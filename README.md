@@ -1,4 +1,4 @@
-# nigma Admin Angular
+# SchoolBook Admin
 
 A mobile first design of a responsive admin template built with angular and bootstrap.
 
