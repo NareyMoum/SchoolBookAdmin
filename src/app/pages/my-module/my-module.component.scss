@@ -1,0 +1,84 @@
+#dynamic-table {
+    ::ng-deep {
+        margin: 10px;
+        .pi {
+            font-family: "primeicons" !important;
+            font-size: 18px !important;
+        }
+
+        .p-datatable-thead tr th ,.p-badge{
+            background-color: #282f48 !important;
+            color: white !important;
+        }
+        .p-component {
+            font-family: unset !important;
+            font-size: unset !important;
+            font-weight: unset !important;
+        }
+        // .p-button{
+        //   background-color: #282f48 !important;
+        //   border: 1px solid #282f48;
+        // }
+
+    }
+
+    .width-60 {
+        width: 60px !important;
+    }
+    .bg-danger {
+        width: 60px;
+        height: 24px;
+        border-radius: 4px;
+    }
+    .bg-warning {
+        width: 60px;
+        height: 24px;
+        border-radius: 4px;
+        text-align: center;
+        line-height: 23px;
+    }
+    .bg-success {
+        width: 60px;
+        height: 24px;
+        border-radius: 4px;
+        text-align: center;
+        line-height: 23px;
+    }
+
+    .showInDesktop {
+        display: block;
+    }
+    .showInMobile {
+        display: none;
+
+        .grid-table {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            gap: 0px 0px;
+            grid-template-areas: "name data";
+
+            .name {
+                grid-area: name;
+            }
+            .data {
+                grid-area: data;
+            }
+        }
+        .grid-table:nth-child(2n + 1) {
+            background: #9e9e9e6b;
+        } // for odd
+        .grid-table:nth-child(2n + 2) {
+            background: transparent;
+        } // for even
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .showInDesktop {
+            display: none;
+        }
+        .showInMobile {
+            display: block;
+        }
+    }
+}

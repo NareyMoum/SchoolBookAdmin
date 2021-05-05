@@ -1,0 +1,103 @@
+<div id="dynamic-table">
+  <mat-card>
+      <p>
+          Total lignes : <p-badge value={{totalRecords}}></p-badge>
+      </p>
+      <!-- Table Visible Just in Dessktop -->
+      <div class="showInDesktop">
+          <p-table [value]="customers" [paginator]="false" sortMode="multiple">
+              <!-- Header in Dessktop -->
+              <ng-template pTemplate="header">
+                  <!-- Show Details in Dessktop -->
+                  <tr>
+                      <th style="border-top-left-radius: 5px;" pSortableColumn="site_wlivraison">
+                          Point de ramassage
+                          <i class="pi pi-sort-alt"></i>
+                      </th>
+                      <th pSortableColumn="datebl_wlivraison">
+                          Date ramassage <i class="pi pi-sort-alt"></i>
+                      </th>
+                      <th pSortableColumn="codebl_wlivraison">
+                          Code BRC <i class="pi pi-sort-alt"></i>
+                      </th>
+                      <th pSortableColumn="totpieces_wlivraison">
+                          Tot pièces <i class="pi pi-sort-alt"></i>
+                      </th>
+                      <th style="width: 100px;">
+                          Actions
+                      </th>
+                  </tr>
+              </ng-template>
+              <!-- Body in Dessktop -->
+              <ng-template pTemplate="body" let-customer>
+                  <!-- Show Details in Dessktop -->
+                  <tr>
+                      <td>{{ customer.site_wlivraison }}</td>
+                      <td>{{ customer.datebl_wlivraison | date:"dd/MM/yyyy" }}</td>
+                      <td>{{ customer.codebl_wlivraison }}</td>
+                      <td>{{ customer.totpieces_wlivraison }}</td>
+                      <td style="width: 100px;display: flex;">
+                            <button  style="margin: 2px;" pButton type="button" class="p-button-info" icon="pi pi-pencil" (click)="edit(customer)"></button>
+                            <button style="margin: 2px;" pButton type="button" class="p-button-danger" icon="pi pi-trash" (click)="deleteTarget(customer)">
+                            </button>
+                      </td>
+                  </tr>
+
+              </ng-template>
+              <!-- Footer in Dessktop -->
+              <ng-template pTemplate="footer" let-columns>
+                  <ng-container>
+                      <tr [hidden]="totalRecords != 0">
+                          <td [colSpan]="2" class="text-center">
+                              Aucun enregistrement trouvé
+                          </td>
+                      </tr>
+                  </ng-container>
+              </ng-template>
+          </p-table>
+      </div>
+
+      <!-- Table Visible Just in Mobile -->
+      <div class="showInMobile">
+          <mat-card style="margin: 15px 5px" *ngFor="let item of customers">
+              <div class="grid-table">
+                  <div class="name">ID :</div>
+                  <div class="data">{{ item.ref_wlivraison }}</div>
+              </div>
+              <div class="grid-table">
+                  <div class="name">Point de ramassage :</div>
+                  <div class="data">{{item.site_wlivraison }}</div>
+              </div>
+              <div class="grid-table">
+                  <div class="name">Date ramassage :</div>
+                  <div class="data">
+                      {{ item.datebl_wlivraison | date:"dd/MM/yyyy" }}
+                  </div>
+              </div>
+              <div class="grid-table">
+                  <div class="name"> Code BRC :</div>
+                  <div class="data">{{ item.codebl_wlivraison }}</div>
+              </div>
+              <div class="grid-table">
+                  <div class="name">Tot pièces :</div>
+                  <div class="data">{{ item.totpieces_wlivraison }}</div>
+              </div>
+              <div class="grid-table">
+                  <div class="name">Action :</div>
+                  <div class="data">
+                      <button mat-raised-button color="accent" (click)="edit(item)">
+                          <mat-icon>remove_red_eye</mat-icon>
+                      </button>
+                  </div>
+              </div>
+          </mat-card>
+      </div>
+
+  </mat-card>
+  <!-- Paginations Visible in Desktop AND Mobile -->
+  <div style="margin: 10px">
+      <p-paginator (onPageChange)="onPaginate($event)" [rows]="take" [totalRecords]="totalRecords"
+          [rowsPerPageOptions]="[2,5, 10, 20, 50, 100]">
+      </p-paginator>
+  </div>
+</div>
